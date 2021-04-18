@@ -7,6 +7,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         session_destroy();
         header('location: /login.php');
     }
+
+    if (isset($_GET['add_to_cart']) && $_GET['add_to_cart'] !== '') {
+        $cookiesCart = $_GET['add_to_cart'];
+        $cookiesId = [32, 36, 46, 58];
+        if (!isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = [
+                32 => 0,
+                36 => 0,
+                46 => 0,
+                58 => 0
+            ];
+        }
+        if (in_array($cookiesCart, $cookiesId)) {
+            $_SESSION['cart'][$cookiesCart] += 1;
+        }
+    }
+
+    if (isset($_GET['remove_to_cart']) && $_GET['remove_to_cart'] !== '') {
+        $cookiesCart = $_GET['remove_to_cart'];
+        $cookiesId = [32, 36, 46, 58];
+        if (!isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = [
+                32 => 0,
+                36 => 0,
+                46 => 0,
+                58 => 0
+            ];
+        }
+        if (in_array($cookiesCart, $cookiesId)) {
+            if ($_SESSION['cart'][$cookiesCart] > 0) {
+                $_SESSION['cart'][$cookiesCart] -= 1;
+            }
+        }
+    }
 }
 
 ?>

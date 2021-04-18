@@ -7,8 +7,10 @@ if (isset($_SESSION['user'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $form = $_POST;
-    $_SESSION['user'] = $form['loginname'];
-    header('location: /');
+    if (!empty($form['loginname'])){
+        $_SESSION['user'] = $form['loginname'];
+        header('location: /');
+    }
 }
 
 ?>
@@ -20,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <strong> Sign in to continue</strong>
                 </div>
                 <div class="panel-body">
-                    <form role="form" action="#" method="POST">
+                    <form role="form" action="" method="POST">
                         <fieldset>
                             <div class="row">
                                 <div class="center-block">

@@ -12,6 +12,12 @@
                         <a href="?add_to_cart=<?= $id; ?>" class="btn btn-primary">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add to cart
                         </a>
+                        <?php if (isset($_SESSION['cart']) && $_SESSION['cart'][$id] !== 0): ?>
+                            <a href="?remove_to_cart=<?= $id; ?>" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> remove to cart
+                            </a>
+                            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> <?= $_SESSION['cart'][$id] ?? '' ?></span>
+                        <?php endif ?>
                     </figcaption>
                 </figure>
             </div>
